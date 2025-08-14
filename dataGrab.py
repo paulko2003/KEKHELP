@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.firefox.options import Options
 from CONSTANTS import PAGENUMBER,SITEHTML,SECRET,VOUCHERPROGRAM
 from time import sleep
 from helpers.logins import getPass
@@ -9,15 +10,18 @@ from helpers.logs import lprint
 
 
 
-
 class fetchData:
-    def __init__(self):
-        self.driver= webdriver.Firefox()
-        self.driver.get("https://voucher.gov.gr/kekadmin/user/login")
-        self._loadWait()
-        self._login()
-        self._loadWait()
-        self._GetHtml() ##uncomment
+    def __init__(self, fetchNew, headless):
+        options = Options()
+        if(headless):
+            options.add_argument("--headless")
+        self.driver= webdriver.Firefox(options=options)
+        if (fetchNew):
+            self.driver.get("https://voucher.gov.gr/kekadmin/user/login")
+            self._loadWait()
+            self._login()
+            self._loadWait()
+            self._GetHtml() ##uncomment
 
     def _loadWait(self):
         try:
@@ -50,6 +54,7 @@ class fetchData:
                 file.write(self.driver.page_source)
     
     def getPageSource(self, page: int):
+        sleep(0.5)
         print(f"file://{SITEHTML}{page}")
         self.driver.get(f"file://{SITEHTML}{page}") #change windows
         return self.driver.page_source
