@@ -11,17 +11,16 @@ from helpers.logs import lprint
 
 
 class fetchData:
-    def __init__(self, fetchNew, headless):
+    def __init__(self, headless):
         options = Options()
         if(headless):
             options.add_argument("--headless")
         self.driver= webdriver.Firefox(options=options)
-        if (fetchNew):
-            self.driver.get("https://voucher.gov.gr/kekadmin/user/login")
-            self._loadWait()
-            self._login()
-            self._loadWait()
-            self._GetHtml() ##uncomment
+        self.driver.get("https://voucher.gov.gr/kekadmin/user/login")
+        self._loadWait()
+        self._login()
+        self._loadWait()
+        self._GetHtml() ##uncomment
 
     def _loadWait(self):
         try:
