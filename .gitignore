@@ -1,0 +1,4 @@
+siteDATA/
+__pycache__
+/logs.txt
+testing.py
