@@ -8,16 +8,18 @@ from fileLogic import fileLogic
 
 
 class main:
-    def __init__(self, fetchNew=True, checkMistakes=True, headless= False, writeHtmlList=True):
+    def __init__(self,):
         integrity=internalIntegrity()
         integrity.check()
+        
+
+    def run( self, fetchNew=False, checkMistakes=False, headless= True, writeHtmlList=False):
         self.costumers=self.initialiseCostumers(fetchNew, headless)
-        print(len(self.costumers))
         if (checkMistakes):
             fileLogic().checkExtra(self.costumers)
         if (writeHtmlList):
             fileLogic().writeHtmlFile(self.costumers)
-    
+        return 1
 
     def initialiseCostumers(self, fetchNew, headless):
         data=fetchData(fetchNew, headless)
@@ -28,4 +30,4 @@ class main:
         return parser.getPeople()
     
 if __name__ == "__main__":
-    main(fetchNew=False, checkMistakes=True, headless=True)
+    main().run(writeHtmlList=True)

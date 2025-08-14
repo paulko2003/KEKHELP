@@ -43,19 +43,16 @@ class fetchData:
         passBox.send_keys(password)
         enterSite= self.driver.find_element(By.XPATH, '//*[@id="dologin"]')
         enterSite.click()
-        print(self.driver.title)
 
     def _GetHtml(self):
         for i in range(1,PAGENUMBER+1):
             self.driver.get(f'{VOUCHERPROGRAM}{i}') #fstrings are cool.
-            print(self.driver.title)
             self._loadWait()
             with open(f"{SITEHTML}{i}", "w" , encoding="utf-8") as file:
                 file.write(self.driver.page_source)
     
     def getPageSource(self, page: int):
         sleep(0.5)
-        print(f"file://{SITEHTML}{page}")
         self.driver.get(f"file://{SITEHTML}{page}") #change windows
         return self.driver.page_source
 

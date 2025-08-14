@@ -15,7 +15,6 @@ class parseData:
         self.rows0 = soup.find_all("tr", class_="row0") #to site exei 2 klaseis 1 gia mple mia gia axno mple, parinei afta ta 2 kai ta ksexorizei
         self.rows1 = soup.find_all("tr", class_="row1")
         self._makePpleList()
-        # print(self.costumers)
         
     def _getRowData(self, row):
         cells= row.find_all("td", class_=["cell_num_0", "cell_num_1","cell_num_2","cell_num_3","cell_num_4","cell_num_5","cell_num_6","cell_num_7","cell_num_8","cell_num_9","cell_num_10","cell_num_11"])
@@ -37,17 +36,16 @@ class parseData:
                 date,title,aae,aat,options,kayaslink]
 
     def _makePpleList(self):
-        print(len(self.rows0), len(self.rows1))
         for i in range(max(len(self.rows0), len(self.rows1))):
             
             try:
                 data0=self._getRowData(self.rows0[i])
                 self.costumers.add(*data0)
             except IndexError as ex: 
-                print(ex)
+                pass
 
             try:
                 data1=self._getRowData(self.rows1[i])
                 self.costumers.add(*data1)
             except IndexError as ex:
-                print(ex)
+                pass
