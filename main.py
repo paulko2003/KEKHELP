@@ -1,10 +1,8 @@
-from dataGrab import fetchData
-from parseData import parseData
-from CONSTANTS import PAGENUMBER,INSTALLEDDIR,SITEHTML
-from time import sleep
-from internalIntegrity import internalIntegrity
-import os
-from fileLogic import fileLogic
+from Online.dataGrab import fetchData
+from Offline.parseData import parseData
+from CONSTANTS import PAGENUMBER,SITEHTML
+from Offline.internalIntegrity import internalIntegrity
+from Offline.fileLogic import fileLogic
 
 
 class main:
@@ -31,4 +29,4 @@ class main:
         return parser.getPeople()
     
 if __name__ == "__main__":
-    main().run(writeHtmlList=True)
+    main().run(writeHtmlList=True,checkMistakes=True)

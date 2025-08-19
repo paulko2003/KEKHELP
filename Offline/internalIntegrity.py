@@ -5,6 +5,7 @@ from CONSTANTS import SITEHTML
 class internalIntegrity:
     def __init__(self):
         self.paths=os.listdir()
+        print(self.paths)
 
     def _cSiteData(self):
         absPath=SITEHTML.split('/')
