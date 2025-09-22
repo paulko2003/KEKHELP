@@ -22,11 +22,18 @@ class main:
 
     def initialiseCostumers(self):
         parser=parseData()
+
         for page in range(1, PAGENUMBER+1):
             with open(f"{SITEHTML}{page}", "r", encoding="utf-8") as file:
                 html=str(file.read())
             parser.addPeople(html)
         return parser.getPeople()
     
+    def test(self): 
+        self.run()
+        fileLogic().checkFormExtra(self.costumers)
+        fileLogic().formsMissing(self.costumers)
+        print(len(self.costumers))
 if __name__ == "__main__":
-    main().run(writeHtmlList=True,checkMistakes=True)
+    # main().test()
+    main().run(headless=True ,fetchNew=False, checkMistakes=True, writeHtmlList=True)

@@ -8,3 +8,5 @@ SITEHTML= "/home/pablo/Documents/KEKAPP/KEKHELP/siteDATA/"
 VOUCHERPROGRAM="https://voucher.gov.gr/kekadmin/dypaue-results/index/per_page/100/page/"
 
 LOGS="/home/pablo/Documents/KEKAPP/KEK/logs.txt"
+
+FORMSDIR="/home/pablo/Documents/KEKAPP/DATA/FORMS"
